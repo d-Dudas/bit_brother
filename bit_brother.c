@@ -113,7 +113,6 @@ int main(int argc, char** argv){
 		printed = 1;
 		sleep(1);
 
-		//resetOutput(lines_printed);
 		system("clear");
 
 	}
