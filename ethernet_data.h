@@ -1,12 +1,16 @@
 #include <string.h>
 
-
+/**
+ * The arguments are the values from a previos (first) read
+*/
 void print_ethernet_data(unsigned long long *ethernet_received, unsigned long long *ethernet_sent) {
 
     int found = 0;
     char interface[32], line[256];
 	unsigned long long second_reading[2], recv_kbps, trans_kbps;
 
+	// The detected ethernet connection are stored in /sys/class/net 
+	// and starts with enp or eth; for example: eth0, enp0s3
     FILE *fp = popen("ls -1 /sys/class/net", "r");
     while(fgets(interface, 32, fp))
         if(strncmp(interface, "enp", 3) == 0 || strncmp(interface, "eth", 3) == 0)
@@ -23,6 +27,8 @@ void print_ethernet_data(unsigned long long *ethernet_received, unsigned long lo
     	perror("Could not open /proc/net/dev");
     	return;
 	}
+
+	// Get the necessary values
 	while (fgets(line, 256, proc_net_dev)) {
     	if (strstr(line, interface) == line) {
         	sscanf(line, "%*s %llu %*s %*s %*s %*s %*s %*s %*s %llu", &second_reading[0], &second_reading[1]);
@@ -31,6 +37,8 @@ void print_ethernet_data(unsigned long long *ethernet_received, unsigned long lo
 	}
 	fclose(proc_net_dev);
 
+	// Daca nu se gaseste interfata cautate, se citesc valorile din ultima linie gasite
+	// Pentru a evita acest lucru, ne volosim de variabila found.
     if(found == 0) {
         second_reading[0] = 0;
         second_reading[1] = 0;

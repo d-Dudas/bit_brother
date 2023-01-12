@@ -61,19 +61,31 @@ char** get_hard_disk_directories(int *disks_found)
     return hard_disk_directories;
 }
 
+/**
+ * Pentru fiecare disk gasit, afisam detaliile
+*/
 void print_disk_data(char *disk)
 {
     char path[BUFFSIZE]; 
     char *endptr;
     sprintf(path, "/sys/block/%s/size", disk);
+
+    // Deschidem fisierul care contine capacitatea diskurlui
     FILE *fp = fopen(path, "r");
     fgets(path, BUFFSIZE, fp);
+    
+    // Convertim in GB
     long int size = (strtol(path, &endptr, 10) * 512) / (1024 * 1024 * 1024);
     printf("\tSize: %ld GB\n", size);
+
+    // Timpul mediu de raspundere se cere dintr-o alta functie
     printf("\tAverage response time: %.2f%%\n", get_average_response_time_double_percentage(disk));
 }
 
-int disks_data()
+/**
+ * Se afiseaza detaliile gasite de fiecare disk detectat
+*/
+void disks_data()
 {
     int disks_found = 0;
     char** hard_disk_directories = get_hard_disk_directories(&disks_found);
@@ -83,5 +95,4 @@ int disks_data()
         print_disk_data(hard_disk_directories[i]);
     }
 
-    return disks_found * 3;
 }

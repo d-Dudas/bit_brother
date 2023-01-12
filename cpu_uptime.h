@@ -3,7 +3,9 @@
 void print_cpu_uptime() {
 	int uptime_secs, days, hours, minutes, secs;
 	FILE *fp;
+	// The uptime is in /proc/uptime stored as seconds
 	fp = fopen("/proc/uptime", "r");
+
 	fscanf(fp, "%d", &uptime_secs);
 	fclose(fp);
 
