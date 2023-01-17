@@ -24,7 +24,7 @@ void print_gpu_data()
 
     str[strlen(str)-1] = '\0';
 
-    // Convert to GB. It is possible that tha read data is in kB. If it is so, than we have to multiply with 1024
+    // Convert to GB. It is possible that the read data is in kB instea of b. If it is so, than we have to multiply with 1024
     total_memory = strtoll(str, &endptr, 10) / (1024.0 * 1024.0 * 1024.0);
     if(total_memory <= 0.01)
         total_memory = total_memory * 1024.0;
