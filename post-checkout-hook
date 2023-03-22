@@ -1,1 +1,4 @@
-.git/hooks/post-checkout
+#!/bin/bash
+
+echo ana are mere
+
