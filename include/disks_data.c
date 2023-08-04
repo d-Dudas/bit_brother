@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "get_diks_response_time.h"
+#include "get_diks_response_time.c"
 
 #define BUFFSIZE 1024
 

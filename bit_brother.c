@@ -3,19 +3,19 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include "cpu_name.h"
-#include "cpu_usage.h"
-#include "cpu_ghz.h"
-#include "cpu_processes.h"
-#include "cpu_threads.h"
-#include "cpu_uptime.h"
-#include "cpu_usage_graph.h"
-#include "mem_data.h"
-#include "mem_graph.h"
-#include "disks_data.h"
-#include "ethernet_data.h"
-#include "wifi_data.h"
-#include "gpu_data.h"
+#include "include/cpu_name.c"
+#include "include/cpu_usage.c"
+#include "include/cpu_ghz.c"
+#include "include/cpu_processes.c"
+#include "include/cpu_threads.c"
+#include "include/cpu_uptime.c"
+#include "include/cpu_usage_graph.c"
+#include "include/mem_data.c"
+#include "include/mem_graph.c"
+#include "include/disks_data.c"
+#include "include/ethernet_data.c"
+#include "include/wifi_data.c"
+#include "include/gpu_data.c"
 
 
 /**
@@ -123,7 +123,7 @@ int main(int argc, char** argv){
 		print_wifi_data(&wifi_received, &wifi_sent); // 3 lines
 
 		// GPU
-		print_gpu_data(); // 4 lines
+		// print_gpu_data(); // 4 lines
 
 		sleep(1);
 

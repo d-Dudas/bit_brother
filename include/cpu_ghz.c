@@ -1,8 +1,5 @@
 #include <string.h>
 
-/**
- * Print the CPU ghz
- */
 void print_cpu_ghz(){
 
 	// The informations about the CPU are in this file
@@ -29,6 +26,3 @@ void print_cpu_ghz(){
 	// Print the information
 	printf("\tCPU speed: %.2lf GHz\n", ghz);
 }
-
-
-
